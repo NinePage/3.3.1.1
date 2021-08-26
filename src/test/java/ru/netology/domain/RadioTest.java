@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
+    Radio rad = new Radio();
+    Radio rad2 = new Radio(15);
 
     @Test
     void increaseNumStation() {
-        Radio rad = new Radio();
         rad.setCurrentNumStation(1);
 
         rad.increaseNumStation();
@@ -21,7 +22,6 @@ class RadioTest {
 
     @Test
     void increaseNumStationOverMax() {
-        Radio rad = new Radio();
         rad.setCurrentNumStation(rad.getMaxNumStation() + 1);
 
         rad.increaseNumStation();
@@ -34,7 +34,6 @@ class RadioTest {
 
     @Test
     void decreaseNumStation() {
-        Radio rad = new Radio();
         rad.setCurrentNumStation(5);
 
         rad.decreaseNumStation();
@@ -47,7 +46,6 @@ class RadioTest {
 
     @Test
     void decreaseNumStationUnderMin() {
-        Radio rad = new Radio();
         rad.setCurrentNumStation(rad.getMinNumStation() - 1);
 
         rad.decreaseNumStation();
@@ -60,7 +58,6 @@ class RadioTest {
 
     @Test
     void increaseVolume() {
-        Radio rad = new Radio();
         rad.setCurrentVolume(0);
 
         rad.increaseVolume();
@@ -73,7 +70,6 @@ class RadioTest {
 
     @Test
     void increaseVolumeOverMax() {
-        Radio rad = new Radio();
         rad.setCurrentVolume(rad.getMaxVolume() + 1);
 
         rad.increaseVolume();
@@ -86,7 +82,6 @@ class RadioTest {
 
     @Test
     void decreaseVolume() {
-        Radio rad = new Radio();
         rad.setCurrentVolume(7);
 
         rad.decreaseVolume();
@@ -100,13 +95,20 @@ class RadioTest {
 
     @Test
     void decreaseVolumeUnderMin() {
-        Radio rad = new Radio();
         rad.setCurrentVolume(rad.getMinVolume() - 1);
 
         rad.decreaseVolume();
 
         int expected = rad.getMinVolume();
         int actual = rad.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void maxNumStation() {
+        int expected = 14;
+        int actual = rad2.getMaxNumStation();
 
         assertEquals(expected, actual);
     }
